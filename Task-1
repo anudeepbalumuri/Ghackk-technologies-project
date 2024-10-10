@@ -1,0 +1,37 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.tree import DecisionTreeClassifier
+
+# Sample data
+data = {
+    'Description': [
+        "A love story between a human and a demon.",
+        "A thrilling adventure in a post-apocalyptic world.",
+        "A magical journey through different realms.",
+        "A high school romance with unexpected twists.",
+        "A battle between heroes and villains."
+    ],
+    'Category': ['Romance', 'Action', 'Fantasy', 'Romance', 'Action']
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(df['Description'], df['Category'], test_size=0.2, random_state=42)
+
+# Vectorize text data
+vectorizer = CountVectorizer()
+X_train_vec = vectorizer.fit_transform(X_train)
+
+# Train the model
+classifier = DecisionTreeClassifier()
+classifier.fit(X_train_vec, y_train)
+
+# Test the model
+X_test_vec = vectorizer.transform(X_test)
+predictions = classifier.predict(X_test_vec)
+
+# Output predictions
+print(predictions)
