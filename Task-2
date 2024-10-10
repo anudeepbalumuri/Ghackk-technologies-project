@@ -1,0 +1,27 @@
+from textblob import TextBlob
+
+# Sample comments
+comments = [
+    "I love reading manga!",
+    "Manhwa has better art than manga.",
+    "I don't like manhwa at all.",
+    "Both are great in their own way."
+]
+
+# Analyze sentiment
+positive_count = 0
+negative_count = 0
+
+for comment in comments:
+    analysis = TextBlob(comment)
+    if analysis.sentiment.polarity > 0:
+        positive_count += 1
+    elif analysis.sentiment.polarity < 0:
+        negative_count += 1
+
+total_comments = len(comments)
+positive_percentage = (positive_count / total_comments) * 100
+negative_percentage = (negative_count / total_comments) * 100
+
+print(f"Positive comments: {positive_percentage}%")
+print(f"Negative comments: {negative_percentage}%")
