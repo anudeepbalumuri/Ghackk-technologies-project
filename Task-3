@@ -1,0 +1,17 @@
+import nltk
+
+# Sample responses based on keywords
+responses = {
+    "What is Castle Swimmer about?": "Castle Swimmer is about a young girl who discovers her powers in an underwater kingdom.",
+    "Who are the main characters?": "The main characters include the princess and her loyal guardian."
+}
+
+def chatbot_response(user_input):
+    for question in responses.keys():
+        if question.lower() in user_input.lower():
+            return responses[question]
+    return "I'm sorry, I don't understand that."
+
+# Example interaction
+user_input = input("Ask me something about Castle Swimmer: ")
+print(chatbot_response(user_input))
